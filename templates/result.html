@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Github Profile Analyzer - Result</title>
+</head>
+<body>
+    <h1>Result</h1>
+    {% if repository %}
+        <p>The most technically complex repository is: {{ repository }}</p>
+    {% else %}
+        <p>No repository found.</p>
+    {% endif %}
+</body>
+</html>
