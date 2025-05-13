@@ -1,14 +1,90 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Github Profile Analyzer - Result</title>
-</head>
-<body>
-    <h1>Result</h1>
-    {% if repository %}
-        <p>The most technically complex repository is: {{ repository }}</p>
-    {% else %}
-        <p>No repository found.</p>
-    {% endif %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Analysis Result – Profile Analyzer{% endblock %}
+
+{% block toast_message %}Analysis complete!{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+
+
+    <main class="col-12 col-md-9 col-lg-10 px-4 py-4">
+
+
+      <section id="skills" class="mb-4">
+
+
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">Developer Skill Profile</div>
+          <div class="card-body">
+            {% filter markdown %}
+              {{ profile }}
+            {% endfilter %}
+          </div>
+        </div>
+      </section>
+
+      <section id="clusters" class="mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-secondary text-white">Repository Clusters</div>
+          <ul class="list-group list-group-flush">
+            {% for repo in clusters %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ repo.full_name }}
+                <span class="badge bg-primary rounded-pill">Cluster {{ repo.cluster }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+
+
+      <section id="repos">
+        <h2 class="mb-3">Enhanced Repo Summaries</h2>
+        {% for e in enhancements %}
+          <div class="repo-summary">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <a href="{{ e.repo.html_url }}" target="_blank">{{ e.repo.full_name }}</a>
+                </h5>
+                <p class="text-muted mb-2">
+                  <strong>Complexity:</strong> {{ e.repo.complexity }}
+                </p>
+
+                <h6>AI-Generated README</h6>
+                <div class="p-3 rounded bg-body-secondary bg-body text-body">
+                  {% filter markdown %}
+                    {{ e.readme }}
+                  {% endfilter %}
+                </div>
+
+                <h6 class="mt-3">Assigned Tags</h6>
+                <p>
+                  {% for tag in e.tags %}
+                    <span class="badge bg-info text-dark me-1">{{ tag }}</span>
+                  {% endfor %}
+                </p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </section>
+    </main>
+  </div>
+</div>
+
+
+
+
+<div class="position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="polite" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Profile Analyzer</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">Analysis complete!</div>
+  </div>
+</div>
+{% endblock %}
