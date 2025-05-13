@@ -13,7 +13,7 @@ from markupsafe import Markup
 
 GEMINI_API_KEY = "AIzaSyAv2nr1Pt1y55bPg9wBDSC45RLHPsBp85w"
 
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "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"
 # GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # directly giving gemini api key
 
