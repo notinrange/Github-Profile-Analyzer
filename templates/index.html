@@ -1,14 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Github Profile Analyzer</title>
-</head>
-<body>
-    <h1>Github Profile Analyzer</h1>
-    <form action="/" method="POST">
-        <label for="username">Enter the GitHub user's name:</label>
-        <input type="text" id="username" name="username">
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h1 class="card-title text-center mb-4">GitHub Profile Analyzer</h1>
+          <form method="POST">
+            <div class="mb-3">
+              <label for="username" class="form-label">Enter GitHub Username</label>
+              <input type="text"
+                     class="form-control"
+                     id="username"
+                     name="username"
+                     placeholder="e.g. notinrange"
+                     required>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">
+                Analyze Profile
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <p class="text-center text-muted">
+        Enter a GitHub username to see top repos, profile summary… 
+      </p>
+    </div>
+  </div>
+{% endblock %}
