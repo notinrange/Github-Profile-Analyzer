@@ -10,16 +10,15 @@ from sklearn.cluster import HDBSCAN
 from markdown import markdown
 from markupsafe import Markup
 
-# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # directly giving gemini api key
-GEMINI_API_KEY = "AIzaSyAv2nr1Pt1y55bPg9wBDSC45RLHPsBp85w"
+
 GEMINI_URL = (
     f"https://generativelanguage.googleapis.com/v1beta/models/"
     f"gemini-2.5-pro-preview-05-06:generateContent?key={GEMINI_API_KEY}"
 )
-# GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 # setuping github token for Authorization
-GITHUB_TOKEN = "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"
 HEADERS_GH = {"Authorization": f"token {GITHUB_TOKEN}"}
 
 app = Flask(__name__)
